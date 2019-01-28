@@ -1,0 +1,14 @@
+version: '3.3'
+
+services:
+
+  dnstools:
+    build:
+      context: .
+      dockerfile: ./srv/lucee/Dockerfile
+    volumes:
+      - ./www:/var/www
+      - ./srv/lucee/logs:/opt/lucee/web/logs
+    ports:
+      - "80:8888"
+

@@ -1,0 +1,40 @@
+body { font-family: Verdana; padding: 0; margin: 0 .5em; } 
+form { display: block; padding-bottom: 15px; } 
+.panel { display: block; float: left; width: 45%; margin: 0 .5em; } 
+.accord { font-size: .8em; margin: 0 .5em; }
+.closed {  }
+.open { display: block; }
+textarea, input, label { width: 95%; display: block; } 
+label { padding-top: 15px; font-weight: bold; } 
+input[type="checkbox"] { float: left; width: auto; } 
+input[type="submit"], input[type="button"] { display: inline-block; width: 15%; margin-right: 15px; } 
+input[type="radio"] { width: auto; float: left; }
+#digDug li { display: block; padding-top: 5px; }
+#digDug .ul2col ul { columns: 2; -webkit-columns: 2; -moz-columns: 2; }
+#digDug ul label { padding: 0 30px; }
+#digDug label a { text-decoration: none; color: Black; }
+.checkboxes { margin: 0 .5em; margin-top: 15px; } 
+div.checkboxes label { width: auto; float: left; padding-top: 0px; padding-left: 15px; } 
+.buttons { padding:10px 0; width: 100%; position: relative; text-align: center; background-color: grey; } 
+#results { padding: 15px 15px 35px; } 
+table { width: 100%; font-size: .7em; } 
+th { text-align: center; border: solid black 1px; } 
+td { border: solid black 1px; white-space: nowrap; }
+#awsformat td { vertical-align: top; }
+td:nth-child(2) { text-align: center; } 
+td:nth-child(4) { max-width: 400px; overflow: hidden; text-overflow: ellipsis; } 
+td div { width: 100%; overflow: hidden; } 
+.green { background-color: chartreuse; } 
+.source { background-color: gold; font-weight: bold; } 
+.red { background-color: indianred; } 
+#digDug .green td:nth-child(1) { padding-left: 25px; }
+.domain td { text-align: center; font-size: 1.75em; font-weight: bold; } 
+.center { text-align: center; }
+.bold { font-weight: bold; }
+.message { padding: .5em 0; }
+ul { margin-top: 0; padding-top: 0; }
+p { margin-bottom: 0; }
+h3 { font-weight: normal; font-size: 1em; } 
+#backlink { position: absolute; right: 0; padding: 5px 10px; }
+#root ul li { margin: 10px 0; }
+#root ul ul li { margin: 0 0; }
