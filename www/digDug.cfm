@@ -125,10 +125,9 @@
 
 		<cfset theseNS = listToArray(form.nameservers, Chr(10)) />
 		<cfset nsCompare = form.sourcens />
-		<cfset preArg = "any +noall +answer">
-		<cfif structKeyExists(form, "reverse") >
-			<cfset preArg = "+noall +answer -x">
-		</cfif>
+		<cfset preArgFwd1 = "any +noall +answer">
+		<cfset preArgRev1 = "+noall +answer -x">
+		<cfset preArgRev2 = "+noall +answer ptr">
 
 		<cfif structKeyExists(form, "prcFile") >
 			<cfset prcFileError = true />
@@ -147,8 +146,20 @@
 			<cfloop index="dI" from="1" to="#ArrayLen(theseDomains)#">
 				
 				<cfset thisDOM = theseDomains[di] />
-
-				<cfset exeArg = preArg & " @#nsCompare# #thisDOM#" />
+				<cfif structKeyExists(form, "reverse") and Find("in-addr.arpa",thisDOM) >
+					<!--- // If Reverse PTR Entry (1.0.0.10.in-addr.arpa) // --->
+					<cfset preArg = preArgRev2 />
+					<cfset thisArg = " @#nsCompare# #thisDOM#" />
+				<cfelseif structKeyExists(form, "reverse") and ListLen(thisDOM,".") eq 4 >
+					<!--- // If Reverse is IP Address (10.0.0.1) // --->
+					<cfset preArg = preArgRev1 />
+					<cfset thisArg = " #thisDOM# @#nsCompare#" />
+				<cfelse>
+					<!--- // Else Forward IP Regardless of Flag // --->
+					<cfset preArg = preArgFwd1 />
+					<cfset thisArg = " @#nsCompare# #thisDOM#" />
+				</cfif>
+				<cfset exeArg = preArg & thisArg />
 				<cfexecute variable="digsource" name="#exeName#" arguments="#exeArg#" errorVariable="exeErr" timeout="30"/>
 				<cfset rawArray[ArrayLen(rawArray)+1][1] = "#thisDOM# @#nsCompare#" />
 				<cfset rawArray[ArrayLen(rawArray)][2] = digsource />
@@ -179,7 +190,20 @@
 
 				<!--- // Add Domain NS Lookup Entries // --->
 				<cfloop index="nsI" from="1" to="#ArrayLen(theseNS)#">
-					<cfset exeArg = preArg & " @#theseNS[nsI]# #thisDOM#" />
+					<cfif structKeyExists(form, "reverse") and Find("in-addr.arpa",thisDOM) >
+						<!--- // If Reverse PTR Entry (1.0.0.10.in-addr.arpa) // --->
+						<cfset preArg = preArgRev2 />
+						<cfset thisArg = " @#theseNS[nsI]# #thisDOM#" />
+					<cfelseif structKeyExists(form, "reverse") and ListLen(thisDOM,".") eq 4 >
+						<!--- // If Reverse is IP Address (10.0.0.1) // --->
+						<cfset preArg = preArgRev1 />
+						<cfset thisArg = " #thisDOM# @#theseNS[nsI]#" />
+					<cfelse>
+						<!--- // Else Forward IP Regardless of Flag // --->
+						<cfset preArg = preArgFwd1 />
+						<cfset thisArg = " @#theseNS[nsI]# #thisDOM#" />
+					</cfif>
+					<cfset exeArg = preArg & thisArg />
 					<cftry>
 						<cfexecute variable="digdug" name="#exeName#" arguments="#exeArg#" errorVariable="exeErr" timeout="30"/>
 						<cfset rawArray[ArrayLen(rawArray)+1][1] = "#thisDOM# @#theseNS[nsI]#" />
