@@ -1,11 +1,14 @@
 body { font-family: Verdana; padding: 0; margin: 0 .5em; } 
 form { display: block; padding-bottom: 15px; } 
+#whoVille h2 a, #whoVille h2 a:visited { text-decoration: none; color: rgb(30, 0, 202); }
+#whoVille h2 a:hover { color: rgb(133, 111, 255); } 
 .panel { display: block; float: left; width: 45%; margin: 0 .5em; } 
 .accord { font-size: .8em; margin: 0 .5em; }
 .closed {  }
 .open { display: block; }
 textarea, input, label { width: 95%; display: block; } 
 label { padding-top: 15px; font-weight: bold; } 
+#whoVille input[type="checkbox"] + label { font-size: .8em; }
 input[type="checkbox"] { float: left; width: auto; } 
 input[type="submit"], input[type="button"] { display: inline-block; width: 15%; margin-right: 15px; } 
 input[type="radio"] { width: auto; float: left; }

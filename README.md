@@ -9,6 +9,7 @@ Docker and run docker-compose file to launch container. Open a browser to http:/
   - Allows Bulk DNS Lookups against specific Name Servers
   - Allows for a "source" Name Server to compare entries
   - Allow for processing existing AWS Route 53 exports to run compares
+- whoVille.cfm: Performs a Whois Lookup on a Domain or IP Address.
 - dbParse.cfm: Parses a Bind output file to list contents.
   - This may not assume a standard Bind file. Was designed for unknown provided file.
 
